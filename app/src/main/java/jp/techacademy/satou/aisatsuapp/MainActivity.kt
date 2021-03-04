@@ -10,9 +10,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() , View.OnClickListener {
 
-    var Hour =0
-    var Minute=0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,56 +27,29 @@ class MainActivity : AppCompatActivity() , View.OnClickListener {
 
 
     override fun onClick(v: View?) {
-        var calender = Calendar.getInstance()
-        Hour = calender.get(Calendar.HOUR_OF_DAY)
-        Minute = calender.get(Calendar.MINUTE)
-        if (2 <= Hour && Hour <= 9) {
-            showTimePickerDialog()
-        } else if (10 <= Hour && Hour <= 17){
-            showTimePickerDialog2()
-        } else if (18 <= Hour && Hour <= 23){
-            showTimePickerDialog3()
-        } else if (0 <= Hour && Hour <= 1){
-            showTimePickerDialog3()
-        }
-
+        showTimePickerDialog()
     }
-
-
     private fun showTimePickerDialog(){
     val timePickerDialog = TimePickerDialog(
         this,
         TimePickerDialog.OnTimeSetListener { view, hour, minute ->
-            textview.text="おはよう"
-        },
-        Hour,Minute,true)
-        timePickerDialog.show()
-
-
-    }
-    private fun showTimePickerDialog2(){
-        val timePickerDialog = TimePickerDialog(
-            this,
-            TimePickerDialog.OnTimeSetListener { view, hour, minute ->
+            if (2 <= hour && hour <= 9) {
+                textview.text="おはよう"
+            }else if(10 <= hour && hour <= 17){
                 textview.text="こんにちは"
-            },
-            Hour,Minute,true)
-        timePickerDialog.show()
-
-
-    }
-
-    private fun showTimePickerDialog3(){
-        val timePickerDialog = TimePickerDialog(
-            this,
-            TimePickerDialog.OnTimeSetListener { view, hour, minute ->
+            }else if (18 <= hour && hour <= 23){
                 textview.text="こんばんは"
-            },
-            Hour,Minute,true)
+            } else if (0 <= hour && hour <= 1){
+                textview.text="こんばんは"
+            }
+
+        },
+        13,0,true)
         timePickerDialog.show()
 
 
     }
+
 
 
 
